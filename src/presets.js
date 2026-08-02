@@ -1,3 +1,8 @@
+// Variable references in preset text use `self.label`, the CONNECTION's label,
+// not the module id. Companion resolves $(label:variable) against whatever the
+// operator named this connection — hardcoding the module id produces buttons
+// that render the raw $(...) text on any connection that has been renamed, and
+// on a second instance of the same module.
 import { safeId } from "./main.js";
 
 // Per-decoder and per-group presets are generated from the registry, because a
@@ -41,7 +46,7 @@ export default function UpdatePresets(self) {
   // --- Fleet ---------------------------------------------------------------
   presets.fleet_online = preset({
     name: "Whole fleet online (no action)",
-    text: "FLEET\n$(flock:online_count)/$(flock:device_count)",
+    text: `FLEET\n$(${self.label}:online_count)/$(${self.label}:device_count)`,
     bgcolor: RED,
     feedbacks: [
       {
@@ -53,7 +58,7 @@ export default function UpdatePresets(self) {
   });
   presets.connected = preset({
     name: "flock is connected",
-    text: "FLOCK\n$(flock:connection_status)",
+    text: `FLOCK\n$(${self.label}:connection_status)`,
     bgcolor: RED,
     actions: [{ actionId: "refresh", options: {} }],
     feedbacks: [
@@ -104,7 +109,7 @@ export default function UpdatePresets(self) {
       "status",
       preset({
         name: `${label}: status (no action)`,
-        text: `${label}\n$(flock:${key}_playing)\n$(flock:${key}_resolution)`,
+        text: `${label}\n$(${self.label}:${key}_playing)\n$(${self.label}:${key}_resolution)`,
         size: "14",
         bgcolor: RED,
         feedbacks: [
@@ -150,7 +155,7 @@ export default function UpdatePresets(self) {
       "bitrate",
       preset({
         name: `${label}: bitrate (no action)`,
-        text: `${label}\n$(flock:${key}_bitrate)\nMbps`,
+        text: `${label}\n$(${self.label}:${key}_bitrate)\nMbps`,
         bgcolor: BLACK,
         feedbacks: [
           {
