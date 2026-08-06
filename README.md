@@ -9,6 +9,21 @@ A [Bitfocus Companion](https://bitfocus.io/companion) connection module for
 [flock](https://github.com/stoatworks-labs/flock) — change what a fleet of
 BirdDog Play NDI/SRT decoders is playing, from one surface.
 
+<!-- downloads:start -->
+
+## Download
+
+**[v1.0.0](https://github.com/stoatworks-labs/companion-module-flock/releases/tag/v1.0.0)**
+
+This release contains:
+
+- [`companion-module-flock-pkg.tgz`](https://github.com/stoatworks-labs/companion-module-flock/releases/latest/download/companion-module-flock-pkg.tgz) — npm package, 24 KB
+- [`flock-1.0.0.tgz`](https://github.com/stoatworks-labs/companion-module-flock/releases/download/v1.0.0/flock-1.0.0.tgz) — npm package, 24 KB
+
+All builds, checksums and release notes: [github.com/stoatworks-labs/companion-module-flock/releases](https://github.com/stoatworks-labs/companion-module-flock/releases).
+
+<!-- downloads:end -->
+
 ## What it does
 
 - **Actions** — play an NDI source or an SRT endpoint on any decoder, **take a
