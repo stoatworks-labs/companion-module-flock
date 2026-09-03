@@ -5,7 +5,7 @@
   "name": "flock",
   "shortname": "flock",
   "description": "Drive a fleet of BirdDog Play NDI/SRT decoders through flock — change what any decoder is playing, apply a source across a whole tag group, reboot, rescan, and watch each decoder's online state, resolution and bitrate.",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "license": "MIT",
   "repository": "git+https://github.com/stoatworks-labs/companion-module-flock.git",
   "bugs": "https://github.com/stoatworks-labs/companion-module-flock/issues",

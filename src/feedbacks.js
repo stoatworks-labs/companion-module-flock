@@ -45,10 +45,8 @@ export default function UpdateFeedbacks(self) {
           useVariables: true,
         },
       ],
-      callback: async (f, context) => {
-        const wanted = (
-          await context.parseVariablesInString(String(f.options.source ?? ""))
-        ).trim();
+      callback: (f) => {
+        const wanted = String(f.options.source ?? "").trim();
         if (!wanted) return false;
         return self.playing(String(f.options.id ?? "")) === wanted;
       },
@@ -130,12 +128,8 @@ export default function UpdateFeedbacks(self) {
           useVariables: true,
         },
       ],
-      callback: async (f, context) => {
-        const wanted = (
-          await context.parseVariablesInString(
-            String(f.options.resolution ?? ""),
-          )
-        ).trim();
+      callback: (f) => {
+        const wanted = String(f.options.resolution ?? "").trim();
         return (
           !!wanted &&
           self.status[String(f.options.id ?? "")]?.video_resolution === wanted
@@ -190,10 +184,8 @@ export default function UpdateFeedbacks(self) {
           useVariables: true,
         },
       ],
-      callback: async (f, context) => {
-        const wanted = (
-          await context.parseVariablesInString(String(f.options.source ?? ""))
-        ).trim();
+      callback: (f) => {
+        const wanted = String(f.options.source ?? "").trim();
         const members = self.groups?.[String(f.options.tag ?? "")] ?? [];
         if (!wanted || members.length === 0) return false;
         return members.every((id) => self.playing(id) === wanted);

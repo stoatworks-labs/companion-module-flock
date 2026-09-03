@@ -32,10 +32,11 @@ export default function UpdateActions(self) {
     allowCustom: true,
   };
 
-  const text = async (event, key) =>
-    (
-      await self.parseVariablesInString(String(event.options[key] ?? ""))
-    ).trim();
+  // Options declared `useVariables: true` arrive already expanded: Companion
+  // resolves them before invoking the callback. `parseVariablesInString` does
+  // not exist in base 2.x — on the context or on InstanceBase — and calling it
+  // throws when the action fires, while the module still loads cleanly.
+  const text = (event, key) => String(event.options[key] ?? "").trim();
 
   const run = async (fn) => {
     try {
@@ -67,8 +68,8 @@ export default function UpdateActions(self) {
       ],
       callback: async (event) =>
         run(async () => {
-          const id = await text(event, "id");
-          const source = await text(event, "source");
+          const id = text(event, "id");
+          const source = text(event, "source");
           if (!id || !source) return;
           await post(self, `/api/devices/${encodeURIComponent(id)}/decode`, {
             source_type: "NDI",
@@ -124,14 +125,14 @@ export default function UpdateActions(self) {
       ],
       callback: async (event) =>
         run(async () => {
-          const id = await text(event, "id");
+          const id = text(event, "id");
           if (!id) return;
           await post(self, `/api/devices/${encodeURIComponent(id)}/decode`, {
             source_type: "SRT",
             srt_connection_type: event.options.mode,
-            srt_ip_address: (await text(event, "ip")) || null,
+            srt_ip_address: text(event, "ip") || null,
             srt_port: Number(event.options.port),
-            srt_stream_name: (await text(event, "stream")) || null,
+            srt_stream_name: text(event, "stream") || null,
             srt_latency_ms: Number(event.options.latency),
           });
         }),
@@ -161,8 +162,8 @@ export default function UpdateActions(self) {
       ],
       callback: async (event) =>
         run(async () => {
-          const tag = await text(event, "tag");
-          const source = await text(event, "source");
+          const tag = text(event, "tag");
+          const source = text(event, "source");
           if (!tag || !source) return;
           await applyGroup(self, tag, "decode", {
             source_type: "NDI",
@@ -206,9 +207,9 @@ export default function UpdateActions(self) {
       ],
       callback: async (event) =>
         run(async () => {
-          const tag = await text(event, "tag");
+          const tag = text(event, "tag");
           if (!tag) return;
-          const patch = JSON.parse(await text(event, "patch"));
+          const patch = JSON.parse(text(event, "patch"));
           await applyGroup(self, tag, event.options.tab, patch);
         }),
     },
@@ -220,7 +221,7 @@ export default function UpdateActions(self) {
       options: [deviceOption],
       callback: async (event) =>
         run(async () => {
-          const id = await text(event, "id");
+          const id = text(event, "id");
           if (!id) return;
           await post(self, `/api/devices/${encodeURIComponent(id)}/reboot`, {});
         }),
@@ -293,10 +294,10 @@ export default function UpdateActions(self) {
       ],
       callback: async (event) =>
         run(async () => {
-          const name = await text(event, "name");
-          const host = await text(event, "host");
+          const name = text(event, "name");
+          const host = text(event, "host");
           if (!name || !host) return;
-          const tags = (await text(event, "tags"))
+          const tags = text(event, "tags")
             .split(",")
             .map((t) => t.trim())
             .filter(Boolean);
@@ -309,7 +310,7 @@ export default function UpdateActions(self) {
       options: [deviceOption],
       callback: async (event) =>
         run(async () => {
-          const id = await text(event, "id");
+          const id = text(event, "id");
           if (!id) return;
           await del(self, `/api/devices/${encodeURIComponent(id)}`);
         }),

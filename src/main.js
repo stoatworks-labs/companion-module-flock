@@ -5,7 +5,7 @@ import UpdateFeedbacks from "./feedbacks.js";
 import UpdateVariableDefinitions from "./variables.js";
 import UpdatePresets from "./presets.js";
 import { socket, login, getJson } from "./api.js";
-import { aboutField } from './about-field.js'
+import { aboutField } from "./about-field.js";
 
 /** Companion variable ids allow only [a-zA-Z0-9_]. flock device ids are UUIDs
  *  with hyphens, so every one of them needs sanitising. */
@@ -113,10 +113,10 @@ export default class ModuleInstance extends InstanceBase {
         value:
           "The decoder list arrives pushed and free. <b>Live status does not</b> — each poll is one HTTP request from flock to <i>every</i> decoder, so a fast interval means constant traffic to real hardware. 5 s suits a monitoring page. Set 0 to leave the hardware alone and use only the actions.",
       },
-    
-    	// Vendored from stoatworks-backend/about. A Companion module has no
-    	// UI of its own, so this config panel is the only surface it has.
-    	aboutField(),
+
+      // Vendored from stoatworks-backend/about. A Companion module has no
+      // UI of its own, so this config panel is the only surface it has.
+      aboutField(),
     ];
   }
 
