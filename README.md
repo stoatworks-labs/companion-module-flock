@@ -12,12 +12,12 @@ BirdDog Play NDI/SRT decoders is playing, from one surface.
 
 ## Download
 
-**[v1.0.4](https://github.com/stoatworks-labs/companion-module-flock/releases/tag/v1.0.4)**
+**[v1.0.5](https://github.com/stoatworks-labs/companion-module-flock/releases/tag/v1.0.5)**
 
 This release contains:
 
 - [`companion-module-flock-pkg.tgz`](https://github.com/stoatworks-labs/companion-module-flock/releases/latest/download/companion-module-flock-pkg.tgz) — npm package, 25 KB
-- [`flock-1.0.4.tgz`](https://github.com/stoatworks-labs/companion-module-flock/releases/download/v1.0.4/flock-1.0.4.tgz) — npm package, 25 KB
+- [`flock-1.0.5.tgz`](https://github.com/stoatworks-labs/companion-module-flock/releases/download/v1.0.5/flock-1.0.5.tgz) — npm package, 25 KB
 
 All builds, checksums and release notes: [github.com/stoatworks-labs/companion-module-flock/releases](https://github.com/stoatworks-labs/companion-module-flock/releases).
 
