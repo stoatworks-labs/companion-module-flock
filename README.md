@@ -8,6 +8,8 @@ A [Bitfocus Companion](https://bitfocus.io/companion) module for
 [flock](https://github.com/stoatworks-labs/flock). It changes what a whole fleet
 of BirdDog Play NDI/SRT decoders is playing, from one surface.
 
+The [project page](https://stoatworks-labs.com/software/companion-flock/) has the downloads and the [user guide](https://stoatworks-labs.com/software/companion-flock/guide/).
+
 <!-- downloads:start -->
 
 ## Download
