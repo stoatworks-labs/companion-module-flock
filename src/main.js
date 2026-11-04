@@ -1,4 +1,4 @@
-import { InstanceBase, Regex, InstanceStatus } from "@companion-module/base";
+import { InstanceBase, InstanceStatus } from "@companion-module/base";
 import { UpgradeScripts } from "./upgrades.js";
 import UpdateActions from "./actions.js";
 import UpdateFeedbacks from "./feedbacks.js";
@@ -73,21 +73,27 @@ export default class ModuleInstance extends InstanceBase {
         value:
           "flock's web server. Leave the password blank unless flock was started with <code>[web].admin_password</code> — with no password it is a trusted-LAN tool with no login at all. Note flock's brute-force lockout is <b>process-wide, not per client</b>: repeated wrong attempts from here lock the web UI out too.",
       },
+      // Plain text and number fields rather than Regex.HOSTNAME / Regex.PORT,
+      // which base 2.2.2 deprecated. A saved string port is converted in
+      // upgrades.js.
       {
         type: "textinput",
         id: "host",
         label: "flock host",
+        tooltip: "IP address (IPv4 or IPv6) or hostname",
         width: 8,
+        minLength: 1,
         default: "127.0.0.1",
-        regex: Regex.HOSTNAME,
       },
       {
-        type: "textinput",
+        type: "number",
         id: "port",
         label: "Port",
         width: 4,
-        default: "8080",
-        regex: Regex.PORT,
+        min: 1,
+        max: 65535,
+        asInteger: true,
+        default: 8080,
       },
       {
         type: "textinput",
